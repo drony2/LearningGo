@@ -59,7 +59,6 @@ func CreatePayoutCard(url string, sum int, card string, token string) (network.P
 		fmt.Println(err)
 	}
 	defer resp.Body.Close()
-
 	body, _ := io.ReadAll(resp.Body)
 
 	var requestClass network.PayoutResponse
