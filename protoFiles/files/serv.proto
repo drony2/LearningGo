@@ -1,0 +1,54 @@
+syntax = "proto3";
+package mid;
+option go_package = "protoFile/files";
+
+enum OrderType{
+	UNKNOWN = 0;
+	P2P = 1;
+	FPS = 2;
+
+}
+
+service Api{
+ rpc GenerateInvoiceP2P(GenerateRequestP2PPostman) returns(GenerateResponseInvoiceP2PPostman);
+ rpc GenerateInvoiceFPS(GenerateInvoiceRequestFPSPostman) returns(GenerateInvoiceResponseFPSPostman);
+ rpc GeneratePayout(GenerateRequestPayoutPostman) returns(GenerateResponsePayoutPostman);
+}
+
+message GenerateRequestP2PPostman{
+	OrderType orderType = 1;
+	int32 Sum = 2;
+}
+
+message GenerateResponseInvoiceP2PPostman{
+	string Uuid = 1;
+	string Card = 2;
+	int32 Sum = 3;
+	string CardHolderName = 4;
+	string BankName = 5;
+}
+
+message GenerateInvoiceRequestFPSPostman{
+	OrderType orderType = 1;
+	int32 Sum = 2;
+}
+
+message GenerateInvoiceResponseFPSPostman{
+	string Uuid = 1;
+	string Card = 2;
+	int32 Sum = 3;
+	string CardHolderName = 4;
+	string BankName = 5;
+}
+
+message GenerateRequestPayoutPostman{
+	OrderType orderType = 1;
+	int32	sum = 2;
+	string card = 3;
+}
+
+message GenerateResponsePayoutPostman{
+	int32 id = 1;
+  string uuid = 2;
+	bool success = 3;
+}
