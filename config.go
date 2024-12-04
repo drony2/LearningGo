@@ -1,6 +1,7 @@
 package awesomeProject
 
 import (
+	"fmt"
 	"gopkg.in/yaml.v3"
 	"os"
 )
@@ -18,4 +19,16 @@ func ParseConfig(pathConfig string) (config *Config, err error) {
 		return
 	}
 	return config, err
+}
+
+func GetToken() (token string) {
+	var (
+		config, errors = ParseConfig("./templates/config.yaml")
+	)
+
+	if errors != nil {
+		fmt.Println(errors)
+		return
+	}
+	return config.Token
 }

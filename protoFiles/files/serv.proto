@@ -6,7 +6,6 @@ enum OrderType{
 	UNKNOWN = 0;
 	P2P = 1;
 	FPS = 2;
-
 }
 
 service Api{

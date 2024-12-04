@@ -1,7 +1,5 @@
 package network
 
-import validation "github.com/go-ozzo/ozzo-validation"
-
 type PayerInfo struct {
 	PayerID string `json:"payerID"`
 }
@@ -50,21 +48,6 @@ type RequestPostmanPayout struct {
 	Type string `json:"type"`
 	Sum  int    `json:"sum"`
 	Card string `json:"card"`
-}
-
-func (r RequestPostmanInvoice) Validate() error {
-	err := validation.ValidateStruct(&r,
-		validation.Field(&r.Type, validation.Required),
-		validation.Field(&r.Sum, validation.Required))
-	return err
-}
-
-func (r RequestPostmanPayout) Validate() error {
-	err := validation.ValidateStruct(&r,
-		validation.Field(&r.Type, validation.Required),
-		validation.Field(&r.Sum, validation.Required),
-		validation.Field(&r.Card, validation.Required))
-	return err
 }
 
 type P2PInvoiceResponse struct {
