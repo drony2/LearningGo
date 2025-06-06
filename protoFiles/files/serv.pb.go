@@ -204,8 +204,8 @@ type GenerateInvoiceRequestFPSPostman struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderType OrderType `protobuf:"varint,1,opt,name=orderType,proto3,enum=mid.OrderType" json:"orderType,omitempty"`
-	Sum       int32     `protobuf:"varint,2,opt,name=Sum,proto3" json:"Sum,omitempty"`
+	OrderType OrderType `protobuf:"varint,1,opt,name=orderType,proto3,enum=mid.OrderType" json:"orderType"`
+	Sum       int32     `protobuf:"varint,2,opt,name=Sum,proto3" json:"Sum"`
 }
 
 func (x *GenerateInvoiceRequestFPSPostman) Reset() {

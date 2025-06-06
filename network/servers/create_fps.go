@@ -4,28 +4,16 @@ import (
 	pb "awesomeProject/protoFiles/files"
 	"context"
 	"errors"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
-func (s *Server) Invoice(_ context.Context, req *pb.GenerateInvoiceRequestFPSPostman) (*pb.GenerateInvoiceResponseFPSPostman, error) {
-	println(req.OrderType)
-	println(req.OrderType.Type())
-	println(req.OrderType.Enum())
-	println(req.OrderType.Descriptor())
-	println(req.OrderType.EnumDescriptor())
-	println(req.OrderType.String())
-	println(req.OrderType.Type())
-	return nil, status.Error(codes.Unimplemented, "")
-	//token := awesomeProject.GetToken()
-	//if token!="" {
-	//
-	//}
-	//if err := validateInvoiceFPSRequest(req); err != nil {
-	//
-	//	return nil, status.Error(codes.InvalidArgument, err.Error())
-	//}
-	//return &pb.GenerateInvoiceResponseFPSPostman{}, nil
+func (s *Server) InvoiceFPS(_ context.Context, req *pb.GenerateInvoiceRequestFPSPostman) *pb.GenerateInvoiceResponseFPSPostman {
+	return &pb.GenerateInvoiceResponseFPSPostman{
+		Uuid:           "1",
+		Card:           "1",
+		Sum:            1,
+		CardHolderName: "12",
+		BankName:       "sd",
+	}
 }
 
 func validateInvoiceFPSRequest(in *pb.GenerateInvoiceRequestFPSPostman) error {

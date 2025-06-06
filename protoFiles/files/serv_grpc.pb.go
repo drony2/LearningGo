@@ -91,7 +91,7 @@ type UnimplementedApiServer struct{}
 func (UnimplementedApiServer) GenerateInvoiceP2P(context.Context, *GenerateRequestP2PPostman) (*GenerateResponseInvoiceP2PPostman, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateInvoiceP2P not implemented")
 }
-func (UnimplementedApiServer) GenerateInvoiceFPS(context.Context, *GenerateInvoiceRequestFPSPostman) (*GenerateInvoiceResponseFPSPostman, error) {
+func (UnimplementedApiServer) GenerateInvoiceFPS(ctx context.Context, girfp *GenerateInvoiceRequestFPSPostman) (*GenerateInvoiceResponseFPSPostman, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateInvoiceFPS not implemented")
 }
 func (UnimplementedApiServer) GeneratePayout(context.Context, *GenerateRequestPayoutPostman) (*GenerateResponsePayoutPostman, error) {
