@@ -28,7 +28,7 @@ func GetToken() (token string) {
 
 	if errors != nil {
 		fmt.Println(errors)
-		return
+		return ""
 	}
 	return config.Token
 }

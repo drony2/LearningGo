@@ -174,7 +174,8 @@ func CreateRequestInvoiceFPSH2H(url string, sum int, token string) (network.FPSI
 
 	return requestClass, 200
 }
-func logRequest(handler http.Handler, config *awesomeProject.Config) http.Handler {
+
+func logRequest(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		if r.RequestURI == "/" {
@@ -193,8 +194,7 @@ func logRequest(handler http.Handler, config *awesomeProject.Config) http.Handle
 
 				switch requestClass.Type {
 				case "P2P":
-
-					req, err := CreateRequestInvoiceP2PH2H(network.PaymentP2PURL, requestClass.Sum, config.Token)
+					req, err := CreateRequestInvoiceP2PH2H(network.PaymentP2PURL, requestClass.Sum, awesomeProject.GetToken())
 					if err != 200 {
 						createErrorRequest := network.FinalResponseError{Error: "Что-то пошло не так, попробуйте позже или обратитесь в поддержку"}
 						request, _ := json.Marshal(createErrorRequest)
@@ -218,7 +218,7 @@ func logRequest(handler http.Handler, config *awesomeProject.Config) http.Handle
 					break
 
 				case "FPS":
-					req, err := CreateRequestInvoiceFPSH2H(network.PaymentFPSURL, requestClass.Sum, config.Token)
+					req, err := CreateRequestInvoiceFPSH2H(network.PaymentFPSURL, requestClass.Sum, awesomeProject.GetToken())
 					if err != 200 {
 						createErrorRequest := network.FinalResponseError{Error: "Что-то пошло не так, попробуйте позже или обратитесь в поддержку"}
 						request, _ := json.Marshal(createErrorRequest)
@@ -262,7 +262,7 @@ func logRequest(handler http.Handler, config *awesomeProject.Config) http.Handle
 			//	handler.ServeHTTP(w, r)
 			//}
 
-			req, err := CreatePayoutCard(network.PayoutURL, requestClass.Sum, requestClass.Card, config.Token)
+			req, err := CreatePayoutCard(network.PayoutURL, requestClass.Sum, requestClass.Card, awesomeProject.GetToken())
 			if err != "" {
 				createErrorRequest := network.FinalResponseError{Error: err}
 				request, _ := json.Marshal(createErrorRequest)
